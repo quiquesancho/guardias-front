@@ -5,11 +5,11 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Iniciar sesión</a>
-      <a mat-list-item href="#">Cerrar sesión</a>
-      <a mat-list-item href="#">Calendario de Guardias</a>
-      <a mat-list-item href="#">Ausencias</a>
-      <a mat-list-item href="#">Subir documento</a>
+      <a mat-list-item >Iniciar sesión</a>
+      <a mat-list-item >Cerrar sesión</a>
+      <a mat-list-item routerLink="calendar" routerLinkActive="link-active">Calendario de Guardias</a>
+      <a mat-list-item routerLink="#">Ausencias</a>
+      <a mat-list-item routerLink="#">Subir documento</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
