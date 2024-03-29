@@ -16,6 +16,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
