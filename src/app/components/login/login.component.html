@@ -1,1 +1,22 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="username" />
+    <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+      Por favor, introduce un correo electronico
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('username')?.hasError('email')">
+      Correo electronico no valido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+      Por favor, introduce la contraseña
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
+</form>
