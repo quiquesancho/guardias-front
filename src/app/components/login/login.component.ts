@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/internal/operators/map';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService: LoginServiceService) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -20,8 +22,16 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      // Aquí puedes enviar los datos del formulario a tu backend para autenticar al usuario
+      this.loginService.login(this.loginForm.value['username'], this.loginForm.value['password']).subscribe({
+        next: res => {
+          console.log(res.headers)
+          this.loginService.handleLoginResponse(res);
+          console.log(sessionStorage.getItem('JSESSIONID'))
+        },
+        error: error => {
+          console.log(error)
+        }
+      });
     }
   }
 }
