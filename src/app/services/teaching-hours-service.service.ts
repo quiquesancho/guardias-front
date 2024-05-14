@@ -11,7 +11,7 @@ export class TeachingHoursServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTeachingHours(): Observable<TeachingHours> {
-    return this.httpClient.get<TeachingHours>(environment.url+"/teachingHours")
+  getTeachingHours(): Observable<TeachingHours[]> {
+    return this.httpClient.get<TeachingHours[]>(environment.url+"/teachingHours")
   }
 }

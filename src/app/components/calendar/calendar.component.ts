@@ -20,7 +20,7 @@ export class CalendarComponent implements OnInit {
   private getTeachingHours(): void {
     this.teachingHoursService.getTeachingHours().subscribe({
       next: (data) => {
-        console.log(data);
+        this.teachingHours = data;
       },
       error: (error) => {
         console.log(error);
