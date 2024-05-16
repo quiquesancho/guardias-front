@@ -1,1 +1,18 @@
-<p>calendar works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <th *ngFor="let day of daysOfWeek">{{ day }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let time of getUniqueTimes()">
+      <td>{{ time.startHour }} - {{ time.endHour }}</td>
+      <td *ngFor="let day of daysOfWeek">
+        <div *ngFor="let slot of getSlotsByDayAndTime(day, time)">
+          {{ slot.occupation }}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
