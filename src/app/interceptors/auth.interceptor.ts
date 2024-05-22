@@ -4,12 +4,14 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private router: Router) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -21,7 +23,14 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', token),
       });
 
-      return next.handle(cloned);
+      return next.handle(cloned).pipe(tap(event => {
+        if(event instanceof HttpResponse){
+         if(event.status == 403){
+          localStorage.clear();
+          this.router.navigate(['/login'])
+         }
+        }
+      }));
     } else {
       return next.handle(request);
     }

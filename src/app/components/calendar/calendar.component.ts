@@ -21,16 +21,18 @@ export class CalendarComponent implements OnInit {
   private getTeachingHours(): void {
     this.teachingHoursService.getTeachingHours().subscribe({
       next: (data) => {
-        this.teachingHours = data;
+        this.teachingHours = data.teachingHours;
       },
       error: (error) => {
         console.log(error);
-      }
+      },
     });
   }
 
   getUniqueTimes() {
-    const times: TimeInterval[] = this.teachingHours.map((th) => th.timeInterval);
+    const times: TimeInterval[] = this.teachingHours.map(
+      (th) => th.timeInterval
+    );
     return times.filter(
       (time, index, self) =>
         index ===
