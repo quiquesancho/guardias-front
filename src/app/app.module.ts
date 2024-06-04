@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UploadDocumentComponent } from './components/upload-document/upload-document.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MenuComponent,
     LoginComponent,
     CalendarComponent,
+    UploadDocumentComponent,
   ],
   imports: [
     BrowserModule,

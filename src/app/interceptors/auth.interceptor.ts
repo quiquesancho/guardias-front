@@ -23,14 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', token),
       });
 
-      return next.handle(cloned).pipe(tap(event => {
-        if(event instanceof HttpResponse){
-         if(event.status == 403){
-          localStorage.clear();
-          this.router.navigate(['/login'])
-         }
-        }
-      }));
+      return next.handle(cloned);
     } else {
       return next.handle(request);
     }

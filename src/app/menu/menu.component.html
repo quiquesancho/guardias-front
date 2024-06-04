@@ -23,8 +23,16 @@
         routerLinkActive="link-active"
         >Calendario de Guardias</a
       >
-      <a mat-list-item *ngIf="isLogged && (isTeacher || isAdmin)" routerLink="#">Ausencias</a>
-      <a mat-list-item *ngIf="isLogged && isAdmin" routerLink="#">Subir documento</a>
+      <a mat-list-item *ngIf="isLogged && (isTeacher || isAdmin)" routerLink="#"
+        >Ausencias</a
+      >
+      <a
+        mat-list-item
+        *ngIf="isLogged && isAdmin"
+        routerLink="uploadXml"
+        routerLinkActive="link-active"
+        >Subir documento</a
+      >
       <a mat-list-item *ngIf="isLogged" (click)="doLogout()">Cerrar sesión</a>
     </mat-nav-list>
   </mat-sidenav>

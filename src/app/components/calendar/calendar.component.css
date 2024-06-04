@@ -1,0 +1,25 @@
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;/* Ajusta el margen superior según necesites */
+}
+
+.calendar-table {
+  width: auto; /* Esto permite que la tabla se ajuste automáticamente a su contenido */
+  max-width: 90%; /* Ajusta el máximo ancho de la tabla, puedes cambiarlo según prefieras */
+  border-collapse: collapse; /* Asegura que las bordes de la tabla estén colapsadas */
+}
+
+.calendar-table th, .calendar-table td {
+  border: 1px solid #ddd; /* Añade borde a las celdas */
+  padding: 8px; /* Añade padding a las celdas */
+}
+
+.calendar-table th {
+  background-color: #f2f2f2; /* Color de fondo para los encabezados */
+  text-align: left; /* Alineación de texto a la izquierda */
+}
+
+.calendar-table td div {
+  margin: 4px 0; /* Margen vertical para los slots dentro de las celdas */
+}

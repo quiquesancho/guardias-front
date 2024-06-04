@@ -1,19 +1,20 @@
-<table class="min-w-full bg-white">
-  <thead>
-    <tr>
-      <th class="py-2 px-4 border-b text-left">Hora</th>
-      <th *ngFor="let day of daysOfWeek" class="py-2 px-4 border-b text-left">{{ day }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let time of getUniqueTimes()">
-      <td class="py-2 px-4 border-b">{{ time.startHour }} - {{ time.endHour }}</td>
-      <td *ngFor="let day of daysOfWeek" class="py-2 px-4 border-b">
-        <div *ngFor="let slot of getSlotsByDayAndTime(day, time)" class="py-1">
-          {{ slot.occupation }}
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="calendar-container">
+  <table class="calendar-table bg-white">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b text-left">Hora</th>
+        <th *ngFor="let day of daysOfWeek" class="py-2 px-4 border-b text-left">{{ day }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let time of getUniqueTimes()">
+        <td class="py-2 px-4 border-b">{{ time.startHour }} - {{ time.endHour }}</td>
+        <td *ngFor="let day of daysOfWeek" class="py-2 px-4 border-b">
+          <div *ngFor="let slot of getSlotsByDayAndTime(day, time)" class="py-1">
+            {{ getFullTeacherName(slot.teacher) }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
