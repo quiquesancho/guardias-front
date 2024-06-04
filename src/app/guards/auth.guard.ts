@@ -21,8 +21,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const routeurl: string = state.url;
-    if (localStorage.getItem('token') != null) {
+    if (sessionStorage.getItem('token') != null) {
       return true;
     }
     this.router.navigate(['/login']);

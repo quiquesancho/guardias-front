@@ -38,7 +38,7 @@ export class MenuComponent {
     this.isTeacher = false;
     this.isAdmin = false;
     this.isSecretary = false;
-    if (localStorage.getItem('token') != null) {
+    if (sessionStorage.getItem('token') != null) {
       this.isLogged = true;
       this.checkRoles();
     }
@@ -51,7 +51,7 @@ export class MenuComponent {
   }
 
   private checkRoles() {
-    let teacherJson = localStorage.getItem('teacher');
+    let teacherJson = sessionStorage.getItem('teacher');
     if(teacherJson != null){
       let teacher = JSON.parse(teacherJson) as Teacher;
       this.isTeacher = teacher.role.includes(this.ROLES[0]);

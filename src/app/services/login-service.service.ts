@@ -30,8 +30,8 @@ export class LoginServiceService {
       .pipe(
         map((res) => {
           if (res.body != null) {
-            localStorage.setItem('token', res.body.token);
-            localStorage.setItem('teacher', JSON.stringify(res.body.teacher));
+            sessionStorage.setItem('token', res.body.token);
+            sessionStorage.setItem('teacher', JSON.stringify(res.body.teacher));
             this.logginSuccess.emit(true);
           }
 
@@ -41,6 +41,6 @@ export class LoginServiceService {
   }
 
   doLogout() {
-    localStorage.clear();
+    sessionStorage.clear();
   }
 }
