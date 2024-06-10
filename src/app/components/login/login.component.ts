@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
         )
         .subscribe({
           next: (res) => {
-            if (res.body != null) {
+            if (res.body != null && res.status == 200) {
               this.router.navigate(['/calendar']);
             }
           },
           error: (error) => {
-            console.log(error);
+            console.log(`Error login component: ${error}`);
           },
         });
     }

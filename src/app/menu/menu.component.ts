@@ -32,7 +32,8 @@ export class MenuComponent {
   ) {
     this.loginService.logginSuccess.subscribe((res) => {
       this.isLogged = res;
-      this.checkRoles();
+      if(this.isLogged)
+        this.checkRoles();
     });
 
     this.isTeacher = false;

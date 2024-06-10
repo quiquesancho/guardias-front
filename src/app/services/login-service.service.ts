@@ -29,7 +29,7 @@ export class LoginServiceService {
       )
       .pipe(
         map((res) => {
-          if (res.body != null) {
+          if (res.body != null && res.status == 200) {
             sessionStorage.setItem('token', res.body.token);
             sessionStorage.setItem('teacher', JSON.stringify(res.body.teacher));
             this.logginSuccess.emit(true);
