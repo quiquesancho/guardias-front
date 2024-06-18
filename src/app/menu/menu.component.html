@@ -1,49 +1,58 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
-    class="sidenav"
+    class="sidenav bg-apple-100"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar class="bg-apple-500 text-greenvogue-900">Menu</mat-toolbar>
     <mat-nav-list>
       <a
         mat-list-item
         *ngIf="!isLogged"
         routerLink="login"
         routerLinkActive="link-active"
-        >Iniciar sesión</a
-      >
+        class="text-apple-700 hover:text-apple-900"
+      >Iniciar sesión</a>
       <a
         mat-list-item
         *ngIf="isLogged"
         routerLink="calendar"
         routerLinkActive="link-active"
-        >Calendario de Guardias</a
-      >
-      <a mat-list-item *ngIf="isLogged && (isTeacher || isAdmin)" routerLink="#"
-        >Ausencias</a
-      >
+        class="text-apple-700 hover:text-apple-900"
+      >Calendario de Guardias</a>
+      <a
+        mat-list-item
+        *ngIf="isLogged && (isTeacher || isAdmin)"
+        routerLink="#"
+        class="text-apple-700 hover:text-apple-900"
+      >Ausencias</a>
       <a
         mat-list-item
         *ngIf="isLogged && isAdmin"
         routerLink="uploadXml"
         routerLinkActive="link-active"
-        >Subir documento</a
-      >
-      <a mat-list-item *ngIf="isLogged" (click)="doLogout()">Cerrar sesión</a>
+        class="text-apple-700 hover:text-apple-900"
+      >Subir documento</a>
+      <a
+        mat-list-item
+        *ngIf="isLogged"
+        (click)="doLogout()"
+        class="text-apple-700 hover:text-apple-900"
+      >Cerrar sesión</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar class="bg-apple-500 text-greenvogue-900">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async"
+        class="text-greenvogue-50"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>

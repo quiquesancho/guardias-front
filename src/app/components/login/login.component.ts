@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loginError: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
             }
           },
           error: (error) => {
+            this.loginError = true;
             console.log(`Error login component: ${error}`);
           },
         });
