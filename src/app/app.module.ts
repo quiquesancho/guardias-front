@@ -20,6 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadDocumentComponent } from './components/upload-document/upload-document.component';
+import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { UploadDocumentComponent } from './components/upload-document/upload-doc
     LoginComponent,
     CalendarComponent,
     UploadDocumentComponent,
+    ModalDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { UploadDocumentComponent } from './components/upload-document/upload-doc
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

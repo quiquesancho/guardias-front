@@ -1,0 +1,11 @@
+<div class="p-4">
+  <h2 mat-dialog-title>{{ data.isError ? 'Error' : 'Éxito' }}</h2>
+  <mat-dialog-content class="mt-4">
+    <p>{{ data.message }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="mt-4">
+    <button mat-button (click)="onClose()" class="bg-apple-500 text-greenvogue-50 px-4 py-2 rounded hover:bg-apple-700">
+      Cerrar
+    </button>
+  </mat-dialog-actions>
+</div>

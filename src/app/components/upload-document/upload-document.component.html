@@ -1,1 +1,30 @@
-<p>upload-document works!</p>
+<div class="container mx-auto p-4">
+  <div class="bg-apple-50 p-4 rounded shadow-md">
+    <h2 class="text-apple-900 mb-4">Subir documento XML</h2>
+    <input type="file" (change)="onFileSelected($event)" class="mb-4" />
+    <div
+      *ngIf="xmlContent"
+      class="bg-apple-100 p-4 rounded border border-apple-300 max-h-96 overflow-auto"
+    >
+      <pre class="text-apple-800 whitespace-pre-wrap break-words">{{
+        xmlContent
+      }}</pre>
+    </div>
+    <div class="mt-4">
+      <button
+        (click)="onUpload()"
+        class="bg-apple-500 text-greenvogue-50 px-4 py-2 rounded hover:bg-apple-700"
+        [disabled]="!file"
+      >
+        Confirmar
+      </button>
+      <button
+        (click)="onCancel()"
+        class="bg-apple-500 text-greenvogue-50 px-4 py-2 rounded hover:bg-apple-700 ml-2"
+        [disabled]="!file"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
