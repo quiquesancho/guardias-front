@@ -20,15 +20,7 @@ export class MenuComponent {
   fullName: string = '';
   email: string = '';
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
-
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private loginService: LoginServiceService,
     private router: Router
   ) {

@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { playgrounds } from 'src/app/interfaces/playgrounds';
 import { Teacher } from 'src/app/interfaces/teacher';
 import { TeachingHours } from 'src/app/interfaces/teaching-hours';
@@ -21,7 +23,7 @@ export class CalendarComponent implements OnInit {
     "V": 5
   };
 
-  constructor(private teachingHoursService: TeachingHoursServiceService) {}
+  constructor(private teachingHoursService: TeachingHoursServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.getTeachingHours();
@@ -35,7 +37,12 @@ export class CalendarComponent implements OnInit {
         this.sortTeachingHours(this.teachingHours);
       },
       error: (error) => {
-        console.log(error);
+        const res: HttpErrorResponse = error;
+        if(res.status === 403) {
+          sessionStorage.clear();
+          this.router.navigate(["/login"]);
+        }
+        console.log(res.status);
       },
     });
   }

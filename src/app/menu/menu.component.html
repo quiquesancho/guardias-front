@@ -1,5 +1,5 @@
 <header
-  class="bg-emerald-700 text-primary-foreground py-4 px-6 flex justify-between items-center"
+  class="bg-emerald-600 text-primary-foreground py-4 px-6 flex justify-between items-center"
 >
   <div class="flex items-center gap-4">
     <a class="flex items-center gap-2" href="/">
@@ -25,6 +25,8 @@
       <a
         class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
         href="#"
+        *ngIf="isLogged && (isTeacher || isAdmin)"
+        routerLinkActive="link-active"
       >
         Mi guardia
       </a>
@@ -62,49 +64,6 @@
 </header>
 
 <div class="sidenav-container">
-  <div id="drawer" class="sidenav bg-emerald-100">
-    <div class="nav-list">
-      <a
-        href="login"
-        *ngIf="!isLogged"
-        routerLinkActive="link-active"
-        class="text-emerald-700 hover:text-emerald-900"
-      >
-        Iniciar sesión
-      </a>
-      <a
-        href="calendar"
-        *ngIf="isLogged"
-        routerLinkActive="link-active"
-        class="text-emerald-700 hover:text-emerald-900"
-      >
-        Calendario de Guardias
-      </a>
-      <a
-        href="#"
-        *ngIf="isLogged && (isTeacher || isAdmin)"
-        class="text-emerald-700 hover:text-emerald-900"
-      >
-        Ausencias
-      </a>
-      <a
-        href="uploadXml"
-        *ngIf="isLogged && isAdmin"
-        routerLinkActive="link-active"
-        class="text-emerald-700 hover:text-emerald-900"
-      >
-        Subir documento
-      </a>
-      <a
-        href="#"
-        *ngIf="isLogged"
-        (click)="doLogout()"
-        class="text-emerald-700 hover:text-emerald-900"
-      >
-        Cerrar sesión
-      </a>
-    </div>
-  </div>
   <div class="sidenav-content">
     <div id="content">
       <ng-content></ng-content>
