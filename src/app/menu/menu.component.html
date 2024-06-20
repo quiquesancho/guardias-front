@@ -1,63 +1,113 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav bg-apple-100"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar class="bg-apple-500 text-greenvogue-900">Menu</mat-toolbar>
-    <mat-nav-list>
+<header
+  class="bg-emerald-700 text-primary-foreground py-4 px-6 flex justify-between items-center"
+>
+  <div class="flex items-center gap-4">
+    <a class="flex items-center gap-2" href="/">
+      <span class="text-lg font-semibold">Guardias IES La Vereda</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6">
       <a
-        mat-list-item
-        *ngIf="!isLogged"
-        routerLink="login"
-        routerLinkActive="link-active"
-        class="text-apple-700 hover:text-apple-900"
-      >Iniciar sesión</a>
-      <a
-        mat-list-item
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="calendar"
         *ngIf="isLogged"
-        routerLink="calendar"
         routerLinkActive="link-active"
-        class="text-apple-700 hover:text-apple-900"
-      >Calendario de Guardias</a>
+      >
+        Calendario
+      </a>
       <a
-        mat-list-item
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="#"
         *ngIf="isLogged && (isTeacher || isAdmin)"
-        routerLink="#"
-        class="text-apple-700 hover:text-apple-900"
-      >Ausencias</a>
-      <a
-        mat-list-item
-        *ngIf="isLogged && isAdmin"
-        routerLink="uploadXml"
         routerLinkActive="link-active"
-        class="text-apple-700 hover:text-apple-900"
-      >Subir documento</a>
+      >
+        Ausencias
+      </a>
       <a
-        mat-list-item
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="#"
+      >
+        Mi guardia
+      </a>
+      <a
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="uploadXml"
+        *ngIf="isLogged && isAdmin"
+        routerLinkActive="link-active"
+      >
+        Subir Documento
+      </a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="hidden md:flex items-center gap-2">
+      <div class="grid gap-0.5 text-xs">
+        <div class="font-medium">{{ fullName }}</div>
+        <div class="text-muted-foreground">{{ email }}</div>
+      </div>
+    </div>
+    <button
+      *ngIf="!isLogged"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+    >
+      <a href="login">Iniciar sesión</a>
+    </button>
+    <button
+      *ngIf="isLogged"
+      (click)="doLogout()"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+    >
+      Cerrar sesión
+    </button>
+  </div>
+</header>
+
+<div class="sidenav-container">
+  <div id="drawer" class="sidenav bg-emerald-100">
+    <div class="nav-list">
+      <a
+        href="login"
+        *ngIf="!isLogged"
+        routerLinkActive="link-active"
+        class="text-emerald-700 hover:text-emerald-900"
+      >
+        Iniciar sesión
+      </a>
+      <a
+        href="calendar"
+        *ngIf="isLogged"
+        routerLinkActive="link-active"
+        class="text-emerald-700 hover:text-emerald-900"
+      >
+        Calendario de Guardias
+      </a>
+      <a
+        href="#"
+        *ngIf="isLogged && (isTeacher || isAdmin)"
+        class="text-emerald-700 hover:text-emerald-900"
+      >
+        Ausencias
+      </a>
+      <a
+        href="uploadXml"
+        *ngIf="isLogged && isAdmin"
+        routerLinkActive="link-active"
+        class="text-emerald-700 hover:text-emerald-900"
+      >
+        Subir documento
+      </a>
+      <a
+        href="#"
         *ngIf="isLogged"
         (click)="doLogout()"
-        class="text-apple-700 hover:text-apple-900"
-      >Cerrar sesión</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="bg-apple-500 text-greenvogue-900">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-        class="text-greenvogue-50"
+        class="text-emerald-700 hover:text-emerald-900"
       >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Guardias IES La Vereda</span>
-    </mat-toolbar>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+        Cerrar sesión
+      </a>
+    </div>
+  </div>
+  <div class="sidenav-content">
+    <div id="content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

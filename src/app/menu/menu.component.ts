@@ -17,6 +17,8 @@ export class MenuComponent {
   isTeacher: boolean;
   isSecretary: boolean;
   isAdmin: boolean;
+  fullName: string = '';
+  email: string = '';
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -32,8 +34,10 @@ export class MenuComponent {
   ) {
     this.loginService.logginSuccess.subscribe((res) => {
       this.isLogged = res;
-      if(this.isLogged)
+      if (this.isLogged) {
         this.checkRoles();
+        this.fillNameAndEmail();
+      }
     });
 
     this.isTeacher = false;
@@ -53,11 +57,20 @@ export class MenuComponent {
 
   private checkRoles() {
     let teacherJson = sessionStorage.getItem('teacher');
-    if(teacherJson != null){
+    if (teacherJson != null) {
       let teacher = JSON.parse(teacherJson) as Teacher;
       this.isTeacher = teacher.role.includes(this.ROLES[0]);
       this.isAdmin = teacher.role.includes(this.ROLES[1]);
       this.isSecretary = teacher.role.includes(this.ROLES[2]);
+    }
+  }
+
+  private fillNameAndEmail() {
+    const json = sessionStorage.getItem('teacher');
+    if (json != null) {
+      const teacher: Teacher = JSON.parse(json);
+      this.fullName = `${teacher.name} ${teacher.firstSurname} ${teacher.secondSurname}`;
+      this.email = teacher.email;
     }
   }
 }
