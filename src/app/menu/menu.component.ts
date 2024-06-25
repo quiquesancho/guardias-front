@@ -40,6 +40,7 @@ export class MenuComponent implements OnInit {
       this.checkRoles();
     }
   }
+
   ngOnInit(): void {
     if (this.isLogged) {
       this.checkRoles();
@@ -49,6 +50,8 @@ export class MenuComponent implements OnInit {
 
   doLogout() {
     this.loginService.doLogout();
+    this.fullName = "";
+    this.email = "";
     this.isLogged = false;
     this.router.navigate(['/']);
   }
