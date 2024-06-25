@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { Teacher } from '../interfaces/teacher';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   isLogged: boolean = false;
   private ROLES: string[] = ['Docente', 'Admin', 'Secretaria'];
   isTeacher: boolean;
@@ -38,6 +38,12 @@ export class MenuComponent {
     if (sessionStorage.getItem('token') != null) {
       this.isLogged = true;
       this.checkRoles();
+    }
+  }
+  ngOnInit(): void {
+    if (this.isLogged) {
+      this.checkRoles();
+      this.fillNameAndEmail();
     }
   }
 
