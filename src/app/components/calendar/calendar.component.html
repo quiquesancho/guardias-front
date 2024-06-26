@@ -1,0 +1,20 @@
+<div class="flex justify-center mt-10">
+  <table class="w-full max-w-6xl bg-white shadow-lg rounded-lg">
+    <thead class="bg-emerald-500 text-white">
+      <tr>
+        <th class="py-3 px-4 border-b border-emerald-700 text-center w-32">Hora</th>
+        <th *ngFor="let day of daysOfWeek" class="py-3 px-4 border-b border-emerald-700 text-center">{{ day }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let time of getUniqueTimes()" class="even:bg-emerald-50 odd:bg-emerald-100">
+        <td class="py-3 px-4 border-b border-emerald-200 text-emerald-900 text-center">{{ time.startHour }} - {{ time.endHour }}</td>
+        <td *ngFor="let day of daysOfWeek" class="py-3 px-4 border-b border-emerald-200">
+          <div *ngFor="let slot of getSlotsByDayAndTime(day, time)" class="py-1 text-greenvogue-950 text-center">
+            {{ getFullTeacherName(slot.teacher) }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

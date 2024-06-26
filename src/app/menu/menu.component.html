@@ -1,29 +1,72 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Iniciar sesión</a>
-      <a mat-list-item href="#">Cerrar sesión</a>
-      <a mat-list-item href="#">Calendario de Guardias</a>
-      <a mat-list-item href="#">Ausencias</a>
-      <a mat-list-item href="#">Subir documento</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Guardias IES La Vereda</span>
-    </mat-toolbar>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<header
+  class="bg-emerald-600 text-primary-foreground py-4 px-6 flex justify-between items-center"
+>
+  <div class="flex items-center gap-4">
+    <a class="flex items-center gap-2" href="/">
+      <span class="text-lg font-semibold">Guardias IES La Vereda</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="calendar"
+        *ngIf="isLogged"
+        routerLinkActive="link-active"
+      >
+        Calendario
+      </a>
+      <a
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="#"
+        *ngIf="isLogged && (isTeacher || isAdmin)"
+        routerLinkActive="link-active"
+      >
+        Ausencias
+      </a>
+      <a
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="#"
+        *ngIf="isLogged && (isTeacher || isAdmin)"
+        routerLinkActive="link-active"
+      >
+        Mi guardia
+      </a>
+      <a
+        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
+        href="uploadXml"
+        *ngIf="isLogged && isAdmin"
+        routerLinkActive="link-active"
+      >
+        Subir Documento
+      </a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="hidden md:flex items-center gap-2">
+      <div class="grid gap-0.5 text-xs">
+        <div class="font-medium">{{ fullName }}</div>
+        <div class="text-muted-foreground">{{ email }}</div>
+      </div>
+    </div>
+    <button
+      *ngIf="!isLogged"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+    >
+      <a href="login">Iniciar sesión</a>
+    </button>
+    <button
+      *ngIf="isLogged"
+      (click)="doLogout()"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+    >
+      Cerrar sesión
+    </button>
+  </div>
+</header>
+
+<div class="sidenav-container">
+  <div class="sidenav-content">
+    <div id="content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
