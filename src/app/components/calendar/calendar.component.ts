@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { playgrounds } from 'src/app/interfaces/playgrounds';
 import { Teacher } from 'src/app/interfaces/teacher';
 import { TeachingHours } from 'src/app/interfaces/teaching-hours';
 import { TimeInterval } from 'src/app/interfaces/time-interval';
@@ -33,8 +32,6 @@ export class CalendarComponent implements OnInit {
     this.teachingHoursService.getTeachingHours().subscribe({
       next: (data) => {
         this.teachingHours = data.teachingHours;
-        playgrounds.forEach(pg => this.teachingHours.push(pg))
-        this.sortTeachingHours(this.teachingHours);
       },
       error: (error) => {
         const res: HttpErrorResponse = error;
@@ -71,25 +68,5 @@ export class CalendarComponent implements OnInit {
 
   getFullTeacherName(teacher: Teacher): string {
     return `${teacher.name} ${teacher.firstSurname} ${teacher.secondSurname}`;
-  }
-
-  private timeToMinutes(time: string): number {
-    const [hours, minutes] = time.split(':').map(Number);
-    return hours * 60 + minutes;
-  }
-
-  private compareTeachingHours(a: TeachingHours, b: TeachingHours): number {
-    const dayComparison = this.dayOrder[a.dayOfWeek] - this.dayOrder[b.dayOfWeek];
-    if (dayComparison !== 0) {
-      return dayComparison;
-    }
-
-    const startMinutesA = this.timeToMinutes(a.timeInterval.startHour);
-    const startMinutesB = this.timeToMinutes(b.timeInterval.startHour);
-    return startMinutesA - startMinutesB;
-  }
-
-  sortTeachingHours(teachingHours: TeachingHours[]): TeachingHours[] {
-    return teachingHours.sort(this.compareTeachingHours.bind(this));
   }
 }
