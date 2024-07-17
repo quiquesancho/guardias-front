@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
 import { LoginServiceService } from '../services/login-service.service';
 import { Router } from '@angular/router';
 import { Teacher } from '../interfaces/teacher';
+import { EventRegisterAbsenceService } from '../services/event-register-absence.service';
 
 @Component({
   selector: 'app-menu',
@@ -22,6 +20,7 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private loginService: LoginServiceService,
+    private eventRegisterAbsenceService: EventRegisterAbsenceService,
     private router: Router
   ) {
     this.loginService.logginSuccess.subscribe((res) => {
@@ -39,6 +38,7 @@ export class MenuComponent implements OnInit {
       this.isLogged = true;
       this.checkRoles();
     }
+    this.subscribeToEvents();
   }
 
   ngOnInit(): void {
@@ -50,9 +50,10 @@ export class MenuComponent implements OnInit {
 
   doLogout() {
     this.loginService.doLogout();
-    this.fullName = "";
-    this.email = "";
+    this.fullName = '';
+    this.email = '';
     this.isLogged = false;
+    this.eventRegisterAbsenceService.unsubscribeToEvents();
     this.router.navigate(['/']);
   }
 
@@ -73,5 +74,16 @@ export class MenuComponent implements OnInit {
       this.fullName = `${teacher.name} ${teacher.firstSurname} ${teacher.secondSurname}`;
       this.email = teacher.email;
     }
+  }
+
+  private subscribeToEvents(): void {
+    this.eventRegisterAbsenceService.subscribeToEvents().subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (data) => {
+        console.log(data);
+      },
+    });
   }
 }
