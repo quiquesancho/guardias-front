@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SseClient } from 'ngx-sse-client';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventResponse } from '../interfaces/event-response';
@@ -20,11 +19,6 @@ export class EventRegisterAbsenceService {
       console.log('received event', event)
       this.sseDataSubject.next(event.data as EventResponse);
     });
-
-    /*this.eventSource.onmessage = event => {
-      console.log('received event', event)
-      this.sseDataSubject.next(event.data);
-    };*/
 
     this.eventSource.onerror = error => {
       console.log('error', error);
