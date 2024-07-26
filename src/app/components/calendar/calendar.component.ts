@@ -25,7 +25,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getTeachingHours();
-    this.prueba();
   }
 
   private getTeachingHours(): void {
@@ -55,13 +54,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
           (t) => t.startHour === time.startHour && t.endHour === time.endHour
         )
     );
-  }
-
-  prueba() {
-    this.subscription = interval(5000).subscribe(() => {
-      console.log("Llama...")
-      this.getTeachingHours();
-    });
   }
 
   getSlotsByDayAndTime(day: string, time: TimeInterval) {

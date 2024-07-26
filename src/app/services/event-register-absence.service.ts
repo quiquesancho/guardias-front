@@ -15,7 +15,7 @@ export class EventRegisterAbsenceService {
   private connectToSSE() {
     this.eventSource = new EventSource(`${environment.url}/events/users/admin@admin.com`);
     console.log('creating event source');
-    this.eventSource.addEventListener('message', (event) => {
+    this.eventSource.addEventListener('update', (event) => {
       console.log('received event', event)
       this.sseDataSubject.next(event.data as EventResponse);
     });
