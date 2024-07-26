@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginServiceService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
@@ -40,9 +43,16 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             this.loginError = true;
+            this.openDialog(error as string, true);
             console.log(`Error login component: ${error}`);
           },
         });
     }
+  }
+
+  openDialog(message: string, isError: boolean): void {
+    this.dialog.open(ModalDialogComponent, {
+      data: { message, isError }
+    });
   }
 }
