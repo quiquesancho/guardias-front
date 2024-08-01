@@ -1,3 +1,5 @@
+import { RegistryAbsence } from "./registry-absence";
+
 export interface EventResponse {
-  nombre: string
+  registryAbsence: RegistryAbsence
 }

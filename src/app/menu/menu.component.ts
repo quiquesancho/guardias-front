@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
       if (this.isLogged) {
         this.checkRoles();
         this.fillNameAndEmail();
+        this.subscribeToEvents();
       }
     });
 
@@ -37,14 +38,15 @@ export class MenuComponent implements OnInit {
     if (sessionStorage.getItem('token') != null) {
       this.isLogged = true;
       this.checkRoles();
+      this.subscribeToEvents();
     }
-    this.subscribeToEvents();
   }
 
   ngOnInit(): void {
     if (this.isLogged) {
       this.checkRoles();
       this.fillNameAndEmail();
+      this.subscribeToEvents();
     }
   }
 
