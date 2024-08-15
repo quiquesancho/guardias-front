@@ -1,5 +1,6 @@
 import { RegistryAbsence } from "./registry-absence";
 
 export interface EventResponse {
-  registryAbsence: RegistryAbsence
+  messageId: string;
+  payload: RegistryAbsence
 }

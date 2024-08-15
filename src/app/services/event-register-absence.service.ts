@@ -17,12 +17,13 @@ export class EventRegisterAbsenceService {
     let teacherJson = sessionStorage.getItem('teacher');
     if (teacherJson != null) {
       let teacher = JSON.parse(teacherJson) as Teacher;
-      this.eventSource = new EventSource(`${environment.url}/events/users/${teacher.email}`);
+      this.eventSource = new EventSource(
+        `${environment.url}/events/users/${teacher.email}`
+      );
       console.log('creating event source');
-      this.eventSource.addEventListener('update', (event) => {
-        console.log('received event', event);
-        this.sseDataSubject.next(event.data as EventResponse);
-      });
+      this.eventSource.onmessage = (event) => {
+        this.sseDataSubject.next(JSON.parse(event.data) as EventResponse);
+      };
 
       this.eventSource.onerror = (error) => {
         console.log('error', error);

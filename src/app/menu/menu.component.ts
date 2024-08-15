@@ -81,7 +81,7 @@ export class MenuComponent implements OnInit {
   private subscribeToEvents(): void {
     this.eventRegisterAbsenceService.subscribeToEvents().subscribe({
       next: (data) => {
-        console.log(data);
+        console.log(data.payload);
       },
       error: (data) => {
         console.log(data);
