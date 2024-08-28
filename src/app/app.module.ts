@@ -17,7 +17,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadDocumentComponent } from './components/upload-document/upload-document.component';
 import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';

@@ -1,3 +1,73 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Guardias IES La Vereda</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            routerLink="calendar"
+            *ngIf="isLogged"
+            routerLinkActive="link-active"
+            >Calendario</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="#"
+            *ngIf="isLogged && (isTeacher || isAdmin)"
+            routerLinkActive="link-active"
+            >Ausencias</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="#"
+            *ngIf="isLogged && (isTeacher || isAdmin)"
+            routerLinkActive="link-active"
+          >
+            Guardias
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="uploadXml"
+            *ngIf="isLogged && isAdmin"
+            routerLinkActive="link-active"
+            >Subir documento</a
+          >
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <button class="btn btn-outline-success" *ngIf="!isLogged">
+          <a routerLink="login">Iniciar Sesión</a>
+        </button>
+        <button
+          class="btn btn-outline-success"
+          *ngIf="isLogged"
+          (click)="doLogout()"
+        >
+          Cerrar Sesión
+        </button>
+      </span>
+    </div>
+  </div>
+</nav>
+<!-- OLDER
 <header
   class="bg-emerald-600 text-primary-foreground py-4 px-6 flex justify-between items-center"
 >
@@ -61,7 +131,7 @@
       Cerrar sesión
     </button>
   </div>
-</header>
+</header> -->
 
 <div class="sidenav-container">
   <div class="sidenav-content">
