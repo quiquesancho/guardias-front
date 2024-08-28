@@ -53,8 +53,8 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-outline-success" *ngIf="!isLogged">
-          <a routerLink="login">Iniciar Sesión</a>
+        <button class="btn btn-outline-success" routerLink="login" *ngIf="!isLogged">
+          Iniciar Sesión
         </button>
         <button
           class="btn btn-outline-success"
@@ -67,76 +67,3 @@
     </div>
   </div>
 </nav>
-<!-- OLDER
-<header
-  class="bg-emerald-600 text-primary-foreground py-4 px-6 flex justify-between items-center"
->
-  <div class="flex items-center gap-4">
-    <a class="flex items-center gap-2" routerLink="/">
-      <span class="text-lg font-semibold">Guardias IES La Vereda</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-6">
-      <a
-        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
-        routerLink="calendar"
-        *ngIf="isLogged"
-        routerLinkActive="link-active"
-      >
-        Calendario
-      </a>
-      <a
-        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
-        routerLink="#"
-        *ngIf="isLogged && (isTeacher || isAdmin)"
-        routerLinkActive="link-active"
-      >
-        Ausencias
-      </a>
-      <a
-        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
-        routerLink="#"
-        *ngIf="isLogged && (isTeacher || isAdmin)"
-        routerLinkActive="link-active"
-      >
-        Mi guardia
-      </a>
-      <a
-        class="text-sm font-medium hover:text-primary-foreground/80 transition-colors"
-        routerLink="uploadXml"
-        *ngIf="isLogged && isAdmin"
-        routerLinkActive="link-active"
-      >
-        Subir Documento
-      </a>
-    </nav>
-  </div>
-  <div class="flex items-center gap-4">
-    <div class="hidden md:flex items-center gap-2">
-      <div class="grid gap-0.5 text-xs">
-        <div class="font-medium">{{ fullName }}</div>
-        <div class="text-muted-foreground">{{ email }}</div>
-      </div>
-    </div>
-    <button
-      *ngIf="!isLogged"
-      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-    >
-      <a routerLink="login">Iniciar sesión</a>
-    </button>
-    <button
-      *ngIf="isLogged"
-      (click)="doLogout()"
-      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-    >
-      Cerrar sesión
-    </button>
-  </div>
-</header> -->
-
-<div class="sidenav-container">
-  <div class="sidenav-content">
-    <div id="content">
-      <ng-content></ng-content>
-    </div>
-  </div>
-</div>
